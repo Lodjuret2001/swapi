@@ -8,10 +8,11 @@ const axios = require('axios').default;
 axios.defaults.baseURL = 'https://swapi.dev/api';
 
 const characters = [
-    { id: 1, name: 'Pontus Skywalker' },
-    { id: 2, name: 'Emperor Benno' },
-    { id: 3, name: 'Darth Skontan' },
-    { id: 4, name: 'Stromtrooper Noel' },
+    { id: 1, name: 'Ymannen' },
+    { id: 2, name: 'Xmannen' },
+    { id: 3, name: 'Emperor Benno' },
+    { id: 4, name: 'Darth Skontan' },
+    { id: 5, name: 'Stromtrooper Noel' },
 ];
 
 
@@ -62,6 +63,16 @@ app.post('/add-character', async (req, res) => {
     }
 });
 
+app.post('/the-choosen-one', (req, res) => {
+
+    const theChoosenOne = {
+        id: characters.length + 1,
+        name: req.body.name
+    };
+
+    characters.push(theChoosenOne);
+    res.send('The choosen ONE is born...');
+});
 
 //PUT requests
 
@@ -111,3 +122,15 @@ app.delete('/collection/:id', (req, res) => {
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on Port: ${port}...`));
+
+
+// {
+//     "characters": [
+//         {
+//             "name": "Emperor Marvin"
+//         },
+//         {
+//             "name": "Darth Skontan"
+//         }
+//     ]
+// }
